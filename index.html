@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f5eac7; /* Background color resembling old paper */
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #random-text {
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            padding: 20px;
+            border: 2px solid #c8c8c8;
+            border-radius: 10px;
+            box-shadow: 2px 2px 5px #888888;
+            max-width: 80%;
+            overflow: auto;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4caf50; /* Green button */
+            border: none;
+            color: white;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="random-text"></div>
+    <button id="generate-button" onclick="generateRandomText()">Generate</button>
+    
+    <script>
+        const randomTextDiv = document.getElementById("random-text");
+
+        function generateRandomText() {
+            randomTextDiv.innerHTML = "";
+
+            const words = 29551;  // Total number of words in Hamlet
+
+            let generatedText = '';
+            for (let j = 0; j < words; j++) {
+                const randomWord = getRandomWord();
+                generatedText += randomWord + ' ';
+            }
+            
+            randomTextDiv.innerHTML = generatedText;
+        }
+
+        function getRandomWord() {
+            const wordLength = Math.floor(Math.random() * 12) + 1; // Generate words of random lengths
+            let word = '';
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz ';
+
+            for (let i = 0; i < wordLength; i++) {
+                const randomChar = characters.charAt(Math.floor(Math.random() * characters.length));
+                word += randomChar;
+            }
+
+            return word;
+        }
+    </script>
+</body>
+</html>
